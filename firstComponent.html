@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+  </head>
+  <body>
+  <!-- using jsx -->
+    <script type="text/jsx">
+      var App = React.createClass({
+        render: function() {
+          return <h1>Hello World</h1>
+        }
+      });
+
+      React.render(<App />, document.body);
+
+    </script>
+
+    <!-- without jsx -->
+<!--     <script>
+      var App = React.createClass({
+        render: function() {
+          return React.DOM.h1(null, "Hi");
+        }
+      });
+      
+      React.render(App(), document.body);
+
+      
+      Can also render this way
+
+      var App = React.createClass({
+        render: function() {
+          return React.createElement("h1", null, "Hi");
+        }
+      });
+
+      React.render(React.createElement(App), document.body)
+    </script>
+ -->  </body>
+</html>
