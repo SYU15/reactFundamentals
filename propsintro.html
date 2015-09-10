@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+  </head>
+  <body>
+    <script type="text/jsx">
+
+    var App = React.createClass({
+      //sets default properties
+      getDefaultProps: function() {
+        return{
+        txt: 'This is the default',
+        cat: 0
+        }
+      },
+      propTypes: {
+        txt: React.PropTypes.string,
+        //makes the property required, if missing, generates a warning 
+        cat: React.PropTypes.number.isRequired
+      },
+      render: function() {
+        return (
+          <div>
+            <b>Bold</b>
+            <h1>{this.props.txt}</h1>
+          </div>
+        );
+      }
+    });
+
+    React.render(<App cat={5} />, document.body);
+    </script>
+
+    <!-- Without JSX -->
+<!--     <script>
+    var App = React.createClass({
+      render: function() {
+        var txt = this.props.txt;
+        return (
+          <div>
+            <b>Bold</b>
+            <h1>{txt}</h1>
+          </div>
+        );
+      }
+    });
+
+    React.render(<App txt="This is the props value"/>, document.body);
+    </script>
+ -->  </body>
+</html>
