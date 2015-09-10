@@ -19,16 +19,26 @@
         this.setState({txt: e.target.value});
       },
       render: function() {
-      //whenever the input changes, call update
+        //can render components inside components
+        //two components will update based on the most recent change
         return (
           <div>
-          <input type="text" onChange={this.update} />
-            <h1>{this.state.txt}</h1>
+            <Widget txt={this.state.txt} update={this.update} />
+            <Widget txt={this.state.txt} update={this.update} />
           </div>
         );
       }
     });
-
+  var Widget = React.createClass({
+    render: function() {
+      return (
+        <div>
+        <input type="text" onChange={this.props.update} />
+          <h1>{this.props.txt}</h1>
+        </div>
+      );
+    }
+  });
     React.render(<App />, document.body);
     </script>
   </body>
