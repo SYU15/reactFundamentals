@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+  </head>
+  <body>
+  <!-- using jsx -->
+    <script type="text/jsx">
+      var Button = React.createClass({
+        getInitialState: function() {
+          return {val: 0}
+        },
+        update: function() {
+          this.setState({val: this.state.val +1})
+        },
+        componentWillMount: function() {
+          //has access to state
+          this.setState({m:2})
+        },
+        render: function() {
+          //render called initially and every time update occurs
+          console.log('rendering');
+          return <button onClick={this.update}>{this.state.val * this.state.m}</button>
+        },
+        componentDidMount: function() {
+          //has access to component in the DOM
+          console.log(this.getDOMNode());
+          this.inc = setInterval(this.update, 500);
+        },
+        componentWillUnmount: function() {
+          //can clean up things in DOM after unmount
+          clearInterval(this.inc);
+        }
+      });
+    
+    var App = React.createClass({
+      mount: function() {
+        React.render(<Button />, document.getElementById('app'));
+      },
+      unmount: function() {
+        React.unmountComponentAtNode(document.getElementById('app'));
+      },
+      render: function() {
+        return (
+          <div>
+            <button onClick={this.mount}>Mount</button>
+            <button onClick={this.unmount}>Unmount</button>
+            <div id="app"></div>
+          </div>
+        );
+      }
+    });
+
+    React.render(<App />, document.body);
+
+    </script>
+  </body>
+</html>
