@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+  </head>
+  <body>
+    <script type="text/jsx">
+      var Button = React.createClass({
+        getInitialState: function() {
+          return {increasing: false}
+        },
+        update: function() {
+          this.setProps({val: this.props.val +1})
+        },
+        componentWillReceiveProps: function(nextProps) {
+          //check to see if the next value is greater than the current value
+          this.setState({increasing: nextProps.val > this.props.val});
+        },
+        //checks to see if component should update
+        shouldComponentUpdate: function(nextProps, nextState) {
+          //only update if value is greater than 5 (re-render)
+          return nextProps.val % 5 === 0;
+        },
+        componentDidUpdate: function(prevProps, prevState) {
+          //only called every 5th increment
+          console.log('prevProps', prevProps);
+        },
+        render: function() {
+          console.log(this.state.increasing);
+          return <button onClick={this.update}>{this.props.val}</button>
+        }
+      });
+
+    React.render(<Button val={0} />, document.body);
+    </script>
+  </body>
+</html>
