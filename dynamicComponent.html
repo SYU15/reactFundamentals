@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+  </head>
+  <body>
+  <!-- using jsx -->
+    <script type="text/jsx">
+      var PersonTable = React.createClass({
+        getInitialState: function() {
+          return {
+            data: [
+              {id: 1, fname: "Bertha", lname: "Bruggs"},
+              {id: 2, fname: "Wyatt", lname: "Wool"},
+              {id: 3, fname: "Charles", lname: "Candy"},
+              {id: 4, fname: "Max", lname: "Manner"},
+              {id: 5, fname: "Larry", lname: "Lindon"}
+            ]
+          }
+        },
+        render: function() {
+          var rows = this.state.data.map(function(person, i) {
+            //there should be a key unique amongst siblings
+            //could use id or index
+            return <PersonRow data={person} key={person.id} />
+
+          });
+          return <table>{rows}</table>
+        }
+      });
+
+      var PersonRow = React.createClass({
+        render: function() {
+          return (
+            <tr>
+            <td>{this.props.data.id}</td>
+            <td>{this.props.data.fname}</td>
+            <td>{this.props.data.lname}</td>
+            </tr>
+            );
+        }
+
+      });
+
+      React.render(<PersonTable />, document.body);
+
+    </script>
+
+  </body>
+</html>
